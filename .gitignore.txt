@@ -2,11 +2,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudio,c++
 
 
-# dump folders
-.vs/
-x64/
-
-
 ### C++ ###
 # Prerequisites
 *.d
