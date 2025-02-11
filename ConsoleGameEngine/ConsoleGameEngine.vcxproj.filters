@@ -19,6 +19,12 @@
     <Filter Include="GameEngine">
       <UniqueIdentifier>{7079d8fc-0abd-4c35-8ab0-4cdc54eb5934}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{067af88a-dd8f-416f-ba85-f888e764bf8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Actor">
+      <UniqueIdentifier>{8c2807ba-7776-48fe-9123-a2e8f3478449}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
