@@ -47,22 +47,17 @@ bool ConsoleRenderer::Initialize()
 		return false;
 	}
 
-	buffer_ = new wchar_t[bufferWidth_ * bufferHeight_];
-	wmemset(buffer_, bufferBlock_, bufferWidth_ * bufferHeight_);
-}
-
-void ConsoleRenderer::Render()
-{
-	if (nullptr == consoleHandle_ || nullptr == buffer_) {
+	if (false == GetConsoleSize(bufferWidth_, bufferHeight_))
+	{
 		DEBUG_BREAK();
-		return;
+		return false;
 	}
 
-	DWORD lenOut = 0;
-	COORD pos = { 0 };
-	WriteConsoleOutputCharacter(consoleHandle_, buffer_, bufferWidth_ * bufferHeight_, pos, &lenOut);
-}
+	buffer_ = new wchar_t[bufferWidth_ * bufferHeight_];
+	wmemset(buffer_, bufferBlock_, bufferWidth_ * bufferHeight_);
 
+	return true;
+}
 
 void ConsoleRenderer::Renderlevel(Level* level)
 {
@@ -79,6 +74,19 @@ void ConsoleRenderer::Renderlevel(Level* level)
 	buffer_[PosX + PosY * bufferWidth_] = actor;
 }
 
+void ConsoleRenderer::Render()
+{
+	if (nullptr == consoleHandle_ || nullptr == buffer_) {
+		DEBUG_BREAK();
+		return;
+	}
+
+	DWORD lenOut = 0;
+	COORD pos = { 0 };
+	WriteConsoleOutputCharacter(consoleHandle_, buffer_, bufferWidth_ * bufferHeight_, pos, &lenOut);
+}
+
+
 void ConsoleRenderer::CleanUp()
 {
 	if (nullptr != buffer_)
@@ -86,5 +94,20 @@ void ConsoleRenderer::CleanUp()
 		delete[] buffer_;
 		buffer_ = nullptr;
 	}
+}
+
+
+bool ConsoleRenderer::GetConsoleSize(unsigned int& outConsoleWidth, unsigned int& outConsoleHeight) const
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = { 0 };
+	if (FALSE == GetConsoleScreenBufferInfo(consoleHandle_, &csbi)) {
+		DEBUG_BREAK();
+		return false;
+	}
+
+	outConsoleWidth = csbi.dwSize.X;
+	outConsoleHeight = csbi.dwSize.Y;
+
+	return true;
 }
 

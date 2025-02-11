@@ -12,13 +12,17 @@ public:
 
 	bool Initialize();
 
-	void Render();
-
 	// TODO : Function Name Change
 	void Renderlevel(Level* level);
 
+	void Render();
+
+	
+
 protected:
 	void CleanUp();
+private: 
+	bool GetConsoleSize(unsigned int& outConsoleWidth, unsigned int& outConsoleHeight) const;
 
 	
 private:
