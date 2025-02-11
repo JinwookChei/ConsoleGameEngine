@@ -1,23 +1,15 @@
-#ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
-#endif  // _DEBUG
-
-
-#ifdef DEBUG
-#define DEBUG_BREAK() __debugbreak()
-#else
-#define DEBUG_BREAK()
-#endif
+#include "Macros.h"
 
 
 #include "ConsoleGameEngine.h"
 #include "ConsoleRenderer.h"
+#include "ConsoleWorld.h"
+
 
 
 ConsoleGameEngine::ConsoleGameEngine()
-	: renderer_(nullptr)
+	: renderer_(nullptr),
+	world_(nullptr)
 {
 }
 
@@ -28,6 +20,12 @@ ConsoleGameEngine::~ConsoleGameEngine()
 
 void ConsoleGameEngine::CleanUp()
 {
+	if (nullptr != renderer_)
+	{
+		delete renderer_;
+		renderer_ = nullptr;
+	}
+
 	if (nullptr != renderer_)
 	{
 		delete renderer_;
@@ -50,6 +48,21 @@ bool ConsoleGameEngine::Initialize()
 		return false;
 	}
 
+
+	world_ = new ConsoleWorld;
+	if (nullptr == world_)
+	{
+		DEBUG_BREAK();
+		return false;
+	}
+
+	if (false == world_->Initialize())
+	{
+		DEBUG_BREAK();
+		return false;
+	}
+
+
 	return true;
 }
 
@@ -57,7 +70,9 @@ void ConsoleGameEngine::GameLoop()
 {
 	while(1)
 	{
+		world_->OnRender(renderer_);
 		renderer_->Render();
+
 	}
 
 }

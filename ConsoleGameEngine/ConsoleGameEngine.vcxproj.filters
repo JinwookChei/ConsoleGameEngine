@@ -25,6 +25,12 @@
     <Filter Include="Contents\Actor">
       <UniqueIdentifier>{8c2807ba-7776-48fe-9123-a2e8f3478449}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameWorld">
+      <UniqueIdentifier>{bd3bef8f-fc07-4cc1-ae78-c0d3a74a407c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Level">
+      <UniqueIdentifier>{e644d3f5-7554-478b-982a-1172eb764d53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +42,18 @@
     <ClCompile Include="ConsoleGameEngine.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Contents\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWorld.cpp">
+      <Filter>GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Contents\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="StartLevel.cpp">
+      <Filter>Contents\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleRenderer.h">
@@ -43,6 +61,21 @@
     </ClInclude>
     <ClInclude Include="ConsoleGameEngine.h">
       <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Contents\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleWorld.h">
+      <Filter>GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Contents\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="StartLevel.h">
+      <Filter>Contents\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Macros.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

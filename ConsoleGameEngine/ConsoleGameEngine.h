@@ -15,6 +15,7 @@ protected:
 
 private:
 	class ConsoleRenderer* renderer_;
+	class ConsoleWorld* world_;
 };
 
 extern ConsoleGameEngine* GEngine;

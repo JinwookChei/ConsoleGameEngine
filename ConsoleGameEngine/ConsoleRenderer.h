@@ -1,5 +1,7 @@
 #pragma once
 
+class Level;
+
 class ConsoleRenderer
 {
 public:
@@ -11,6 +13,9 @@ public:
 	bool Initialize();
 
 	void Render();
+
+	// TODO : Function Name Change
+	void Renderlevel(Level* level);
 
 protected:
 	void CleanUp();

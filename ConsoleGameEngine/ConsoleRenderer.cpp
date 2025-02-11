@@ -1,17 +1,9 @@
-#ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
-#endif  // _DEBUG
-
-#ifdef DEBUG
-#define DEBUG_BREAK() __debugbreak()
-#else
-#define DEBUG_BREAK()
-#endif
-
+#include "Macros.h"
 
 #include "ConsoleRenderer.h"
+#include "ConsoleWorld.h"
+#include "Level.h"
+#include "Actor.h"
 
 #include <Windows.h>
 #include <locale.h>
@@ -69,6 +61,22 @@ void ConsoleRenderer::Render()
 	DWORD lenOut = 0;
 	COORD pos = { 0 };
 	WriteConsoleOutputCharacter(consoleHandle_, buffer_, bufferWidth_ * bufferHeight_, pos, &lenOut);
+}
+
+
+void ConsoleRenderer::Renderlevel(Level* level)
+{
+	if (nullptr == level)
+	{
+		DEBUG_BREAK();
+		return;
+	}
+
+	unsigned int PosX = level->actor_->X;
+	unsigned int PosY = level->actor_->Y;
+	wchar_t actor = level->actor_->mesh;
+
+	buffer_[PosX + PosY * bufferWidth_] = actor;
 }
 
 void ConsoleRenderer::CleanUp()
