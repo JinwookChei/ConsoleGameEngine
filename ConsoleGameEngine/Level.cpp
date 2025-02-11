@@ -10,4 +10,9 @@ Level::Level()
 
 Level::~Level()
 {
+	if(nullptr != actor_)
+	{
+		delete actor_;
+		actor_ = nullptr;
+	}
 }

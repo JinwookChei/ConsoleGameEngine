@@ -26,10 +26,10 @@ void ConsoleGameEngine::CleanUp()
 		renderer_ = nullptr;
 	}
 
-	if (nullptr != renderer_)
+	if (nullptr != world_)
 	{
-		delete renderer_;
-		renderer_ = nullptr;
+		delete world_;
+		world_ = nullptr;
 	}
 }
 
@@ -70,11 +70,10 @@ void ConsoleGameEngine::GameLoop()
 {
 	while(1)
 	{
+		renderer_->ModifyRendererSizeFromConsoleSize();
 		world_->OnRender(renderer_);
 		renderer_->Render();
-
 	}
-
 }
 
 

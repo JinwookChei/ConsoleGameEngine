@@ -13,6 +13,11 @@ ConsoleWorld::ConsoleWorld()
 
 ConsoleWorld::~ConsoleWorld()
 {
+	if (nullptr != level_)
+	{
+		delete level_;
+		level_ = nullptr;
+	}
 }
 
 bool ConsoleWorld::Initialize()

@@ -17,6 +17,8 @@ public:
 
 	void Render();
 
+	void ModifyRendererSizeFromConsoleSize();
+
 	
 
 protected:

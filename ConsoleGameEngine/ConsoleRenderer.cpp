@@ -67,6 +67,7 @@ void ConsoleRenderer::Renderlevel(Level* level)
 		return;
 	}
 
+	// TODO : 코드 수정 (임시 테스트 코드임)
 	unsigned int PosX = level->actor_->X;
 	unsigned int PosY = level->actor_->Y;
 	wchar_t actor = level->actor_->mesh;
@@ -84,6 +85,31 @@ void ConsoleRenderer::Render()
 	DWORD lenOut = 0;
 	COORD pos = { 0 };
 	WriteConsoleOutputCharacter(consoleHandle_, buffer_, bufferWidth_ * bufferHeight_, pos, &lenOut);
+}
+
+void ConsoleRenderer::ModifyRendererSizeFromConsoleSize()
+{
+	unsigned int consoleWidth;
+	unsigned int consoleHeight;
+
+	if (false == GetConsoleSize(consoleWidth, consoleHeight))
+	{
+		DEBUG_BREAK();
+		return;
+	}
+
+	if (bufferWidth_ != consoleWidth || bufferHeight_ != consoleHeight)
+	{
+		bufferWidth_ = consoleWidth;
+		bufferHeight_ = consoleHeight;
+
+		delete[] buffer_;
+
+		buffer_ = new wchar_t[bufferWidth_ * bufferHeight_];
+		wmemset(buffer_, bufferBlock_, bufferWidth_ * bufferHeight_);
+
+		return;
+	}
 }
 
 
