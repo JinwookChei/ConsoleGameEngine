@@ -22,6 +22,15 @@ Actor::~Actor()
 {
 }
 
+void Actor::BeginPlay()
+{
+}
+
+void Actor::Tick()
+{
+}
+
+
 Coord Actor::GetCoord() const
 {
 	return coord_;

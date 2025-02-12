@@ -9,6 +9,10 @@ public:
 	Actor(unsigned int X, unsigned int Y);
 	virtual ~Actor();
 
+	virtual void BeginPlay();
+
+	virtual void Tick();
+
 	Coord GetCoord() const;
 
 	wchar_t GetMesh() const;

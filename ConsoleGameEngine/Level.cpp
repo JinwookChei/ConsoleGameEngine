@@ -5,16 +5,55 @@
 #include "Actor.h"
 
 Level::Level()
-	: actors_(new LinkedList<Actor>)
+	: world_(nullptr),
+	actors_(new LinkedList<Actor>)
 {
-	// TODO : World-> Spawn Actor 함수 만들어야함.
 }
 
 Level::~Level()
 {
-	if(nullptr != actors_)
+	if (nullptr != actors_)
 	{
 		delete actors_;
 		actors_ = nullptr;
 	}
 }
+
+bool Level::Initilize(const ConsoleWorld* worldRef)
+{
+	if (nullptr == worldRef)
+	{
+		DEBUG_BREAK();
+		return false;
+	}
+
+	world_ = worldRef;
+	return true;
+}
+
+void Level::BeginPlay()
+{
+}
+
+void Level::Tick()
+{
+}
+
+LinkedList<Actor>* Level::GetActors() const
+{
+	return actors_;
+}
+
+const ConsoleWorld* Level::GetWorld() const
+{
+	if (nullptr == world_)
+	{
+		DEBUG_BREAK();
+		return nullptr;
+	}
+
+	return world_;
+}
+
+
+

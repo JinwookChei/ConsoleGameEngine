@@ -71,7 +71,7 @@ void ConsoleGameEngine::GameLoop()
 	while(1)
 	{
 		renderer_->ModifyRendererSizeFromConsoleSize();
-		world_->OnRender(renderer_);
+		world_->Update(renderer_);
 		renderer_->Render();
 	}
 }

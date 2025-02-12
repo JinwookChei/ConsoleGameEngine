@@ -13,7 +13,7 @@ public:
 	bool Initialize();
 
 	// TODO : Function Name Change
-	void Renderlevel(Level* level);
+	void UpdateBuffer(Level* level);
 
 	void Render();
 

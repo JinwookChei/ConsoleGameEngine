@@ -5,10 +5,11 @@
 #include "Actor.h"
 #include "Level.h"
 #include "StartLevel.h"
+#include "LinkedList.h"
 
 ConsoleWorld::ConsoleWorld()
+	: level_(nullptr)
 {
-	level_ = new StartLevel();
 }
 
 ConsoleWorld::~ConsoleWorld()
@@ -21,8 +22,8 @@ ConsoleWorld::~ConsoleWorld()
 }
 
 bool ConsoleWorld::Initialize()
-{
-	if (nullptr == level_)
+{	
+	if (false == ChangeLevel<StartLevel>())
 	{
 		return false;
 	}
@@ -30,21 +31,17 @@ bool ConsoleWorld::Initialize()
 	return true;
 }
 
-void ConsoleWorld::OnRender(ConsoleRenderer* renderer) const
+void ConsoleWorld::Update(ConsoleRenderer* renderer) const
 {
 	if (nullptr == renderer)
 	{
 		DEBUG_BREAK();
 		return;
 	}
-
-	renderer->Renderlevel(level_);
+	
+	renderer->UpdateBuffer(level_);
 }
 
-bool ConsoleWorld::SpawnActor(Actor* actor) const
-{
-	return false;
-}
 
 Level* ConsoleWorld::GetLevel() const
 {
@@ -56,13 +53,7 @@ Level* ConsoleWorld::GetLevel() const
 	return level_;
 }
 
-bool ConsoleWorld::ChangeLevel(Level* level)
+void ConsoleWorld::OnBeginPlay() const
 {
-	if (nullptr == level)
-	{
-		return false;
-	}
-
-	level_ = level;
-	return true;
+	level_->BeginPlay();
 }

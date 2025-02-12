@@ -60,7 +60,7 @@ bool ConsoleRenderer::Initialize()
 	return true;
 }
 
-void ConsoleRenderer::Renderlevel(Level* level)
+void ConsoleRenderer::UpdateBuffer(Level* level)
 {
 	if (nullptr == level)
 	{
@@ -68,18 +68,21 @@ void ConsoleRenderer::Renderlevel(Level* level)
 		return;
 	}
 
-	LINK_ITEM<Actor>* pCur = level->actors_->head_;
+	// TODO : Tick 실행 위치 변경
+	level->Tick();
+	LINK_ITEM<Actor>* pCur = level->GetActors()->head_;
 
 	while (pCur)
 	{
+		// TODO : Actor Tick 실행 위치 변경
+		pCur->item_->Tick();
 		Coord actorCoord = pCur->item_->GetCoord();
 		wchar_t actorMesh = pCur->item_->GetMesh();
 
 		buffer_[actorCoord.X_ + actorCoord.Y_ * bufferWidth_] = actorMesh;
-	}
 
-	// TODO : 코드 수정 (임시 테스트 코드임)
-	
+		pCur = pCur->next_;
+	}
 }
 
 void ConsoleRenderer::Render()

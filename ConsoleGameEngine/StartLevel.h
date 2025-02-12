@@ -6,4 +6,7 @@ class StartLevel : public Level
 public:
 	StartLevel();
 	virtual ~StartLevel();
+
+	void BeginPlay() override;
+	void Tick() override;
 };
