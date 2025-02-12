@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="ConsoleGameEngine.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Coordinate.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="ConsoleGameEngine.h" />
+    <ClInclude Include="GameEngine.h" />
     <ClInclude Include="ConsoleRenderer.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Level.h" />

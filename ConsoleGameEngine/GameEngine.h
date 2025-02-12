@@ -1,11 +1,11 @@
 #pragma once
 
 
-class ConsoleGameEngine
+class GameEngine
 {
 public:
-	ConsoleGameEngine();
-	~ConsoleGameEngine();
+	GameEngine();
+	~GameEngine();
 
 	bool Initialize();
 
@@ -18,4 +18,4 @@ private:
 	class ConsoleWorld* world_;
 };
 
-extern ConsoleGameEngine* GEngine;
+extern GameEngine* GEngine;

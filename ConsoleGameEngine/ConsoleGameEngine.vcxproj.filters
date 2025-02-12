@@ -13,32 +13,35 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ConsoleRenderer">
-      <UniqueIdentifier>{add92a36-7f98-4bcf-ae04-c317272ae794}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine">
-      <UniqueIdentifier>{7079d8fc-0abd-4c35-8ab0-4cdc54eb5934}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents">
       <UniqueIdentifier>{067af88a-dd8f-416f-ba85-f888e764bf8a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\Actor">
       <UniqueIdentifier>{8c2807ba-7776-48fe-9123-a2e8f3478449}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameWorld">
-      <UniqueIdentifier>{bd3bef8f-fc07-4cc1-ae78-c0d3a74a407c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Level">
       <UniqueIdentifier>{e644d3f5-7554-478b-982a-1172eb764d53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineLibrary">
+    <Filter Include="ConsoleGameEngine">
+      <UniqueIdentifier>{7079d8fc-0abd-4c35-8ab0-4cdc54eb5934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleGameEngine\ConsoleRenderer">
+      <UniqueIdentifier>{add92a36-7f98-4bcf-ae04-c317272ae794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleGameEngine\GameWorld">
+      <UniqueIdentifier>{bd3bef8f-fc07-4cc1-ae78-c0d3a74a407c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleGameEngine\EngineLibrary">
       <UniqueIdentifier>{570ddc56-50a8-4c83-abd5-86795bd2c037}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineLibrary\MathLibrary">
+    <Filter Include="ConsoleGameEngine\EngineLibrary\MathLibrary">
       <UniqueIdentifier>{5c4a9fc5-7ef2-42d2-a072-ceedf7d771d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineLibrary\ContainerLibrary">
+    <Filter Include="ConsoleGameEngine\EngineLibrary\ContainerLibrary">
       <UniqueIdentifier>{fb320be8-7599-46b3-a277-4b55d84cb3e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleGameEngine\EngineLibrary\Macros">
+      <UniqueIdentifier>{aec3d678-a57b-4f91-9735-96a08ca5baf4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,16 +49,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleRenderer.cpp">
-      <Filter>ConsoleRenderer</Filter>
+      <Filter>ConsoleGameEngine\ConsoleRenderer</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleGameEngine.cpp">
-      <Filter>GameEngine</Filter>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>ConsoleGameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
       <Filter>Contents\Actor</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleWorld.cpp">
-      <Filter>GameWorld</Filter>
+      <Filter>ConsoleGameEngine\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Contents\Level</Filter>
@@ -64,21 +67,21 @@
       <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Coordinate.cpp">
-      <Filter>EngineLibrary\MathLibrary</Filter>
+      <Filter>ConsoleGameEngine\EngineLibrary\MathLibrary</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleRenderer.h">
-      <Filter>ConsoleRenderer</Filter>
+      <Filter>ConsoleGameEngine\ConsoleRenderer</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleGameEngine.h">
-      <Filter>GameEngine</Filter>
+    <ClInclude Include="GameEngine.h">
+      <Filter>ConsoleGameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Contents\Actor</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleWorld.h">
-      <Filter>GameWorld</Filter>
+      <Filter>ConsoleGameEngine\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Contents\Level</Filter>
@@ -86,14 +89,14 @@
     <ClInclude Include="StartLevel.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Macros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Coordinate.h">
-      <Filter>EngineLibrary\MathLibrary</Filter>
+      <Filter>ConsoleGameEngine\EngineLibrary\MathLibrary</Filter>
     </ClInclude>
     <ClInclude Include="LinkedList.h">
-      <Filter>EngineLibrary\ContainerLibrary</Filter>
+      <Filter>ConsoleGameEngine\EngineLibrary\ContainerLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Macros.h">
+      <Filter>ConsoleGameEngine\EngineLibrary\Macros</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

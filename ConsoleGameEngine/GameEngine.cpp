@@ -1,24 +1,24 @@
 #include "Macros.h"
 
 
-#include "ConsoleGameEngine.h"
+#include "GameEngine.h"
 #include "ConsoleRenderer.h"
 #include "ConsoleWorld.h"
 
 
 
-ConsoleGameEngine::ConsoleGameEngine()
+GameEngine::GameEngine()
 	: renderer_(nullptr),
 	world_(nullptr)
 {
 }
 
-ConsoleGameEngine::~ConsoleGameEngine()
+GameEngine::~GameEngine()
 {
 	CleanUp();
 }
 
-void ConsoleGameEngine::CleanUp()
+void GameEngine::CleanUp()
 {
 	if (nullptr != renderer_)
 	{
@@ -33,7 +33,7 @@ void ConsoleGameEngine::CleanUp()
 	}
 }
 
-bool ConsoleGameEngine::Initialize()
+bool GameEngine::Initialize()
 {
 	renderer_ = new ConsoleRenderer;
 	if (nullptr == renderer_)
@@ -66,7 +66,7 @@ bool ConsoleGameEngine::Initialize()
 	return true;
 }
 
-void ConsoleGameEngine::GameLoop()
+void GameEngine::GameLoop()
 {
 	while(1)
 	{

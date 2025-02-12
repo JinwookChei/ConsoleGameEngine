@@ -1,10 +1,10 @@
 #include "Macros.h"
 
-#include "ConsoleGameEngine.h"
+#include "GameEngine.h"
 #include <locale.h>
 
 
-ConsoleGameEngine* GEngine = nullptr;
+GameEngine* GEngine = nullptr;
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
 //_CrtSetBreakAlloc(352);
 #endif  // _DEBUG
 
-    GEngine = new ConsoleGameEngine();
+    GEngine = new GameEngine();
     if (nullptr == GEngine)
     {
         DEBUG_BREAK();
