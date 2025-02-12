@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ConsoleGameEngine.cpp" />
+    <ClCompile Include="Coordinate.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ConsoleRenderer.cpp" />
@@ -139,8 +140,10 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ConsoleGameEngine.h" />
     <ClInclude Include="ConsoleRenderer.h" />
+    <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="ConsoleWorld.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="StartLevel.h" />
   </ItemGroup>

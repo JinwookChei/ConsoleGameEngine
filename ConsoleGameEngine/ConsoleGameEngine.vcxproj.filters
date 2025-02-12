@@ -31,6 +31,15 @@
     <Filter Include="Contents\Level">
       <UniqueIdentifier>{e644d3f5-7554-478b-982a-1172eb764d53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineLibrary">
+      <UniqueIdentifier>{570ddc56-50a8-4c83-abd5-86795bd2c037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineLibrary\MathLibrary">
+      <UniqueIdentifier>{5c4a9fc5-7ef2-42d2-a072-ceedf7d771d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineLibrary\ContainerLibrary">
+      <UniqueIdentifier>{fb320be8-7599-46b3-a277-4b55d84cb3e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +63,9 @@
     <ClCompile Include="StartLevel.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
+    <ClCompile Include="Coordinate.cpp">
+      <Filter>EngineLibrary\MathLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleRenderer.h">
@@ -76,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="Macros.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>EngineLibrary\MathLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>EngineLibrary\ContainerLibrary</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

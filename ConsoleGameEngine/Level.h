@@ -1,6 +1,10 @@
 #pragma once
 
+
 class Actor;
+
+template<typename T>
+class LinkedList;
 
 class Level
 {
@@ -9,5 +13,6 @@ public:
 	virtual ~Level();
 
 	// Temp
-	Actor* actor_;
+	LinkedList<Actor>* actors_;
+	//Actor* actor_;
 };

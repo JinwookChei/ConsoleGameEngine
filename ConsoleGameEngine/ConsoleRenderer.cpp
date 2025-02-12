@@ -4,6 +4,7 @@
 #include "ConsoleWorld.h"
 #include "Level.h"
 #include "Actor.h"
+#include "LinkedList.h"
 
 #include <Windows.h>
 #include <locale.h>
@@ -67,12 +68,18 @@ void ConsoleRenderer::Renderlevel(Level* level)
 		return;
 	}
 
-	// TODO : 코드 수정 (임시 테스트 코드임)
-	unsigned int PosX = level->actor_->X;
-	unsigned int PosY = level->actor_->Y;
-	wchar_t actor = level->actor_->mesh;
+	LINK_ITEM<Actor>* pCur = level->actors_->head_;
 
-	buffer_[PosX + PosY * bufferWidth_] = actor;
+	while (pCur)
+	{
+		Coord actorCoord = pCur->item_->GetCoord();
+		wchar_t actorMesh = pCur->item_->GetMesh();
+
+		buffer_[actorCoord.X_ + actorCoord.Y_ * bufferWidth_] = actorMesh;
+	}
+
+	// TODO : 코드 수정 (임시 테스트 코드임)
+	
 }
 
 void ConsoleRenderer::Render()
