@@ -134,6 +134,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ConsoleRenderer.cpp" />
     <ClCompile Include="ConsoleWorld.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="StartLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,11 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="ConsoleRenderer.h" />
     <ClInclude Include="Coordinate.h" />
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="InputMappingContext.h" />
+    <ClInclude Include="InputState.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="ConsoleWorld.h" />
     <ClInclude Include="LinkedList.h" />

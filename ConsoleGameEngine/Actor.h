@@ -1,7 +1,9 @@
 #pragma once
 #include "Coordinate.h"
+#include "LinkedList.h"
 
-class Actor	
+
+class Actor
 {
 public:
 	Actor();
@@ -17,14 +19,11 @@ public:
 
 	wchar_t GetMesh() const;
 
-private:
-	// TODO : Change Struct
+	void* spawnedlinkItem_;
+
+protected:
 	Coord coord_;
 
 	// mesh
 	wchar_t mesh_;
-
-	// getWorld -> 월드에서 스폰 가능. 레벨의 getWOrld를 통해접근.
-	// Level
-	
 };

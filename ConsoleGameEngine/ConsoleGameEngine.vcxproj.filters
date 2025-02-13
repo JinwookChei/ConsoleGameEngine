@@ -43,6 +43,9 @@
     <Filter Include="ConsoleGameEngine\EngineLibrary\Macros">
       <UniqueIdentifier>{aec3d678-a57b-4f91-9735-96a08ca5baf4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ConsoleGameEngine\InputSystem">
+      <UniqueIdentifier>{99bfa2e5-8751-437a-9d2e-0b119f86b039}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="Coordinate.cpp">
       <Filter>ConsoleGameEngine\EngineLibrary\MathLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Contents\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,21 @@
     </ClInclude>
     <ClInclude Include="Macros.h">
       <Filter>ConsoleGameEngine\EngineLibrary\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Contents\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>ConsoleGameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMappingContext.h">
+      <Filter>ConsoleGameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>ConsoleGameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="HashMap.h">
+      <Filter>ConsoleGameEngine\EngineLibrary\ContainerLibrary</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

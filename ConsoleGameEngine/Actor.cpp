@@ -2,19 +2,21 @@
 
 Actor::Actor()
 	: mesh_(L'A'),
-	coord_()
+	coord_{0,0},
+	spawnedlinkItem_(nullptr)
 {
 }
 
 Actor::Actor(Coord coord)
 	: mesh_(L'A'),
-	coord_(coord)
+	coord_{ coord },
+	spawnedlinkItem_(nullptr)
 {
 }
 
 Actor::Actor(unsigned int X, unsigned int Y)
 	: mesh_(L'A'),
-	coord_(X, Y)
+	coord_{X, Y}
 {
 }
 
@@ -29,7 +31,6 @@ void Actor::BeginPlay()
 void Actor::Tick()
 {
 }
-
 
 Coord Actor::GetCoord() const
 {

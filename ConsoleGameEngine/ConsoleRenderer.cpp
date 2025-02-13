@@ -95,6 +95,7 @@ void ConsoleRenderer::Render()
 	DWORD lenOut = 0;
 	COORD pos = { 0 };
 	WriteConsoleOutputCharacter(consoleHandle_, buffer_, bufferWidth_ * bufferHeight_, pos, &lenOut);
+	
 }
 
 void ConsoleRenderer::ModifyRendererSizeFromConsoleSize()

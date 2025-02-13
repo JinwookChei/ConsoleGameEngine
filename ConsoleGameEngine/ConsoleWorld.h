@@ -1,9 +1,10 @@
 #pragma once
+#include <iostream>
 #include "Coordinate.h"
 #include "LinkedList.h"
 #include "Level.h"
 
-class Level;
+//class Level;
 class Actor;
 class ConsoleRenderer;
 
@@ -18,11 +19,14 @@ public:
 
 	void Update(ConsoleRenderer* renderer) const;
 
-	template<typename T>
+	template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type* = nullptr>
 	T* SpawnActor(unsigned int CoordX, unsigned int CoordY) const;
 
-	template<typename T>
+	template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type* = nullptr>
 	T* SpawnActor(Coord coord) const;
+	
+	template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type* = nullptr>
+	bool DestroyActor(T* destroyActor) const;
 
 	Level* GetLevel() const;
 
@@ -34,38 +38,67 @@ private:
 
 private:
 	Level* level_;
-	
+
 };
 
-template<typename T>
+
+template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type*>
 inline T* ConsoleWorld::SpawnActor(unsigned int coordX, unsigned int coordY) const
 {
-	Actor* actor = new T{ coordX, coordY };
-	if (nullptr == actor)
+	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>(coordX, coordY);
+	if (nullptr == actorLinkItem)
 	{
 		DEBUG_BREAK();
 		return nullptr;
 	}
-	
-	level_->GetActors()->PushFront(actor);
 
-	return actor;
+	actorLinkItem->item_->spawnedlinkItem_ = actorLinkItem;
+
+	if (!level_->GetActors()->PushFront((LINK_ITEM<Actor>*)actorLinkItem))
+	{
+		DEBUG_BREAK();
+		return nullptr;
+	}
+
+	return actorLinkItem->item_;
 }
 
-template<typename T>
+
+template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type*>
 inline T* ConsoleWorld::SpawnActor(Coord coord) const
 {
-	Actor* actor = new T{ coord };
-	if (nullptr == actor)
+	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>(coord);
+	if (nullptr == actorLinkItem)
 	{
 		DEBUG_BREAK();
 		return nullptr;
 	}
 
-	level_->GetActors()->PushFront(actor);
+	actorLinkItem->item_->spawnedlinkItem_ = actorLinkItem;
 
-	return actor;
+	if (!level_->GetActors()->PushFront((LINK_ITEM<Actor>*)actorLinkItem))
+	{
+		DEBUG_BREAK();
+		return nullptr;
+	}
+
+	return actorLinkItem->item_;
 }
+
+template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type*>
+inline bool ConsoleWorld::DestroyActor(T* destroyActor) const
+{
+	LINK_ITEM<Actor>* destroyActorLinkItem = (LINK_ITEM<Actor>*)(Actor*)destroyActor->spawnedlinkItem_;
+	if (nullptr == destroyActor)
+	{
+		DEBUG_BREAK();
+		return false;
+	}
+
+	return level_->GetActors()->PopItem(destroyActorLinkItem);
+}
+
+
 
 template<typename T>
 bool ConsoleWorld::ChangeLevel()

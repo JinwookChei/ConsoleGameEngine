@@ -26,4 +26,7 @@ private:
 	const ConsoleWorld* world_;
 
 	LinkedList<Actor>* actors_;
+
+	// TODO : actor pool ¸¸µé±â
+	LinkedList<Actor>* actorsPool;
 };
