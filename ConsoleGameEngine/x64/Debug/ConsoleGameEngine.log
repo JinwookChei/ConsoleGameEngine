@@ -1,7 +1,40 @@
-﻿  ConsoleRenderer.cpp
+﻿  Actor.cpp
+  ConsoleRenderer.cpp
   ConsoleWorld.cpp
   GameEngine.cpp
+C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(38,2): warning C4150: deletion of pointer to incomplete type 'Actor'; no destructor called
+  (compiling source file 'GameEngine.cpp')
+      C:\Project\ConsoleGameEngine\ConsoleGameEngine\Level.h(4,7):
+      see declaration of 'Actor'
+      C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(38,2):
+      the template instantiation context (the oldest one first) is
+          C:\Project\ConsoleGameEngine\ConsoleGameEngine\ConsoleWorld.h(59,28):
+          see reference to class template instantiation 'LinkedList<Actor>' being compiled
+          C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(82,1):
+          while compiling class template member function 'LinkedList<Actor>::~LinkedList(void)'
+          C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(307,1):
+          while compiling class template member function 'void LinkedList<Actor>::DeleteAll(void)'
+          C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(311,3):
+          see reference to class template instantiation 'LINK_ITEM<T>' being compiled
+          with
+          [
+              T=Actor
+          ]
+          C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(32,1):
+          while compiling class template member function 'LINK_ITEM<T>::~LINK_ITEM(void)'
+          with
+          [
+              T=Actor
+          ]
+              C:\Project\ConsoleGameEngine\ConsoleGameEngine\LinkedList.h(19,1):
+              see the first reference to 'LINK_ITEM<T>::~LINK_ITEM' in 'LINK_ITEM<T>::~LINK_ITEM'
+          with
+          [
+              T=Actor
+          ]
+  
   Level.cpp
+  Player.cpp
   StartLevel.cpp
   Generating Code...
   ConsoleGameEngine.vcxproj -> C:\Project\ConsoleGameEngine\x64\Debug\ConsoleGameEngine.exe

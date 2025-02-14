@@ -45,7 +45,9 @@ private:
 template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type*>
 inline T* ConsoleWorld::SpawnActor(unsigned int coordX, unsigned int coordY) const
 {
-	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>(coordX, coordY);
+	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>;
+	actorLinkItem->item_ = new T(coordX, coordY);
+
 	if (nullptr == actorLinkItem)
 	{
 		DEBUG_BREAK();
@@ -67,7 +69,9 @@ inline T* ConsoleWorld::SpawnActor(unsigned int coordX, unsigned int coordY) con
 template <typename T, typename std::enable_if<std::is_base_of<Actor, T>::value>::type*>
 inline T* ConsoleWorld::SpawnActor(Coord coord) const
 {
-	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>(coord);
+	LINK_ITEM<T>* actorLinkItem = new LINK_ITEM<T>;
+	actorLinkItem->item_ = new T(coord);
+
 	if (nullptr == actorLinkItem)
 	{
 		DEBUG_BREAK();

@@ -2,178 +2,13 @@
 
 #include "Macros.h"
 
-//template<typename T>
-//struct LINK_ITEM
-//{
-//	LINK_ITEM(T* item);
-//
-//	LINK_ITEM<T>* next_;
-//	LINK_ITEM<T>* prev_;
-//	T* item_;
-//};
-//
-//template<typename T>
-//LINK_ITEM<T>::LINK_ITEM(T* item)
-//	: next_(nullptr),
-//	prev_(nullptr),
-//	item_(item)
-//{
-//}
-//
-//
-//template<typename T>
-//class LinkedList
-//{
-//public:
-//	LinkedList();
-//	virtual ~LinkedList();
-//
-//	LINK_ITEM<T>* head_;
-//	LINK_ITEM<T>* tail_;
-//
-//	void PushFront(T* item);
-//	void PushBack(T* item);
-//
-//	void PopFront();
-//	void PopBack();
-//
-//	void Erase();
-//};
-//
-//
-//template<typename T>
-//LinkedList<T>::LinkedList()
-//	: head_(nullptr),
-//	tail_(nullptr)
-//{
-//}
-//
-//template<typename T>
-//LinkedList<T>::~LinkedList()
-//{
-//	Erase();
-//}
-//
-//template<typename T>
-//void LinkedList<T>::PushFront(T* item)
-//{
-//	if (nullptr == item)
-//	{
-//		DEBUG_BREAK();
-//		return;
-//	}
-//
-//	LINK_ITEM<T>* linkItem = new LINK_ITEM<T>(item);
-//
-//
-//	if (nullptr == head_)
-//	{
-//		linkItem->next_ = nullptr;
-//		linkItem->prev_ = nullptr;
-//		head_ = linkItem;
-//		tail_ = linkItem;
-//	}
-//	else
-//	{
-//		linkItem->prev_ = nullptr;
-//		linkItem->next_ = head_;
-//		head_->prev_ = linkItem;
-//		head_ = linkItem;
-//	}
-//}
-//
-//template<typename T>
-//void LinkedList<T>::PushBack(T* item)
-//{
-//	if (nullptr == item)
-//	{
-//		DEBUG_BREAK();
-//		return;
-//	}
-//
-//	LINK_ITEM<T>* linkItem = new LINK_ITEM<T>(item);
-//
-//	if (nullptr == tail_)
-//	{
-//		linkItem->prev_ = nullptr;
-//		linkItem->next_ = nullptr;
-//
-//		head_ = linkItem;
-//		tail_ = linkItem;
-//	}
-//	else
-//	{
-//		linkItem->prev_ = tail_;
-//		linkItem->next_ = nullptr;
-//		tail_->next_ = linkItem;
-//		tail_ = linkItem;
-//	}
-//}
-//
-//template<typename T>
-//void LinkedList<T>::PopFront()
-//{
-//	if (nullptr == head_)
-//	{
-//		DEBUG_BREAK();
-//		return;
-//	}
-//
-//	if (head_ == tail_)
-//	{
-//		delete head_;
-//		head_ = nullptr;
-//		tail_ = nullptr;
-//	}
-//	else
-//	{
-//		head_ = head_->next_;
-//		delete head_->prev_;
-//		head_->prev_ = nullptr;
-//	}
-//
-//}
-//
-//template<typename T>
-//void LinkedList<T>::PopBack()
-//{
-//	if (nullptr == tail_)
-//	{
-//		DEBUG_BREAK();
-//		return;
-//	}
-//
-//	if (head_ == tail_)
-//	{
-//		delete tail_;
-//		head_ = nullptr;
-//		tail_ = nullptr;
-//	}
-//	else
-//	{
-//		tail_ = tail_->prev_;
-//		delete tail_->next_;
-//		tail_->next_ = nullptr;
-//	}
-//}
-//
-//template<typename T>
-//void LinkedList<T>::Erase()
-//{
-//	while (head_)
-//	{
-//		PopFront();
-//	}
-//}
-
-
 template<typename T>
 class LinkedList;
 
 template<typename T>
 struct LINK_ITEM
 {
-	LINK_ITEM(T item);
+	LINK_ITEM();	
 	~LINK_ITEM();
 
 	LINK_ITEM<T>* next_;
@@ -184,10 +19,10 @@ struct LINK_ITEM
 };
 
 template<typename T>
-LINK_ITEM<T>::LINK_ITEM(T item)
+inline LINK_ITEM<T>::LINK_ITEM()
 	: next_(nullptr),
 	prev_(nullptr),
-	item_(new T(item)),
+	item_(nullptr),
 	ownerLinkedList_(nullptr)
 {
 }
@@ -223,11 +58,15 @@ public:
 	LINK_ITEM<T>* PopFront();
 	LINK_ITEM<T>* PopBack();
 
-	bool PopItem(LINK_ITEM<T>* linkItem);
+	bool PopItem(LINK_ITEM<T>* popTarget);
+
+	bool DeleteItem(LINK_ITEM<T>* deleteTarget);
 
 	void PopAll();
 
-	//void PrintAll();
+	void DeleteAll();
+
+	//void PrintAll() const;
 };
 
 
@@ -241,7 +80,7 @@ LinkedList<T>::LinkedList()
 template<typename T>
 LinkedList<T>::~LinkedList()
 {
-	PopAll();
+	DeleteAll();
 }
 
 template<typename T>
@@ -257,8 +96,6 @@ bool LinkedList<T>::PushFront(LINK_ITEM<T>* linkItem)
 	{
 		return false;
 	}
-
-
 
 	if (nullptr == head_)
 	{
@@ -330,7 +167,7 @@ LINK_ITEM<T>* LinkedList<T>::PopFront()
 
 	if (head_ == tail_)
 	{
-		LINK_ITEM<T>* linkItem = &*head_;
+		LINK_ITEM<T>* linkItem = head_;
 		linkItem->ownerLinkedList_ = nullptr;
 
 		head_ = nullptr;
@@ -339,10 +176,10 @@ LINK_ITEM<T>* LinkedList<T>::PopFront()
 	}
 	else
 	{
-		LINK_ITEM<T>* linkItem = &*head_;
+		LINK_ITEM<T>* linkItem = head_;
 		linkItem->ownerLinkedList_ = nullptr;
 
-		head_ = &*head_->next_;
+		head_ = head_->next_;
 		head_->prev_ = nullptr;
 
 		linkItem->next_ = nullptr;
@@ -363,7 +200,7 @@ LINK_ITEM<T>* LinkedList<T>::PopBack()
 
 	if (head_ == tail_)
 	{
-		LINK_ITEM<T>* linkItem = &*tail_;
+		LINK_ITEM<T>* linkItem = tail_;
 		linkItem->ownerLinkedList_ = nullptr;
 
 		head_ = nullptr;
@@ -373,10 +210,10 @@ LINK_ITEM<T>* LinkedList<T>::PopBack()
 	}
 	else
 	{
-		LINK_ITEM<T>* linkItem = &*tail_;
+		LINK_ITEM<T>* linkItem = tail_;
 		linkItem->ownerLinkedList_ = nullptr;
 
-		tail_ = &*tail_->prev_;
+		tail_ = tail_->prev_;
 		tail_->next_ = nullptr;
 
 		linkItem->prev_ = nullptr;
@@ -385,52 +222,52 @@ LINK_ITEM<T>* LinkedList<T>::PopBack()
 }
 
 template<typename T>
-inline bool LinkedList<T>::PopItem(LINK_ITEM<T>* linkItem)
+inline bool LinkedList<T>::PopItem(LINK_ITEM<T>* popTarget)
 {
-	if (nullptr == linkItem)
+	if (nullptr == popTarget)
 	{
 		DEBUG_BREAK();
 		return false;
 	}
 
-	if (this == linkItem->ownerLinkedList_)
+	if (this == popTarget->ownerLinkedList_)
 	{
 
-		if (nullptr == linkItem->prev_ && nullptr == linkItem->next_)
+		if (nullptr == popTarget->prev_ && nullptr == popTarget->next_)
 		{
 			head_ = nullptr;
 			tail_ = nullptr;
 
-			linkItem->ownerLinkedList_ = nullptr;
+			popTarget->ownerLinkedList_ = nullptr;
 			return true;
 		}
-		else if (nullptr == linkItem->prev_)
+		else if (nullptr == popTarget->prev_)
 		{
-			head_ = &*linkItem->next_;
+			head_ = &*popTarget->next_;
 			head_->prev_ = nullptr;
 
-			linkItem->next_ = nullptr;
-			linkItem->ownerLinkedList_ = nullptr;
+			popTarget->next_ = nullptr;
+			popTarget->ownerLinkedList_ = nullptr;
 			return true;
 		}
-		else if (nullptr == linkItem->next_)
+		else if (nullptr == popTarget->next_)
 		{
-			tail_ = &*linkItem->prev_;
+			tail_ = &*popTarget->prev_;
 			tail_->next_ = nullptr;
 
-			linkItem->prev_ = nullptr;
-			linkItem->ownerLinkedList_ = nullptr;
+			popTarget->prev_ = nullptr;
+			popTarget->ownerLinkedList_ = nullptr;
 			return true;
 		}
 		else
 		{
-			linkItem->prev_->next_ = linkItem->next_;
-			linkItem->next_->prev_ = linkItem->prev_;
+			popTarget->prev_->next_ = popTarget->next_;
+			popTarget->next_->prev_ = popTarget->prev_;
 
-			linkItem->prev_ = nullptr;
-			linkItem->next_ = nullptr;
+			popTarget->prev_ = nullptr;
+			popTarget->next_ = nullptr;
 
-			linkItem->ownerLinkedList_ = nullptr;
+			popTarget->ownerLinkedList_ = nullptr;
 			return true;
 		}
 	}
@@ -441,12 +278,49 @@ inline bool LinkedList<T>::PopItem(LINK_ITEM<T>* linkItem)
 }
 
 template<typename T>
+inline bool LinkedList<T>::DeleteItem(LINK_ITEM<T>* deleteTarget)
+{
+	if (false == PopItem(deleteTarget))
+	{
+		DEBUG_BREAK();
+		return false;
+	}
+
+	delete deleteTarget;
+	deleteTarget = nullptr;
+
+	return true;
+}
+
+template<typename T>
 void LinkedList<T>::PopAll()
 {
-	LINK_ITEM<T>* pCur = head_;
-	while (pCur)
+	//LINK_ITEM<T>* pCur = head_;
+	while (head_)
 	{
 		PopFront();
-		pCur = head_;
 	}
 }
+
+template<typename T>
+inline void LinkedList<T>::DeleteAll()
+{
+	while (head_)
+	{
+		LINK_ITEM<T>* deleteTarget = PopFront();
+		delete deleteTarget;
+		deleteTarget = nullptr;
+	}
+}
+
+//template<typename T>
+//inline void LinkedList<T>::PrintAll() const
+//{
+//	LINK_ITEM<T>* pCur = head_;
+//	while (pCur)
+//	{
+//		printf("%d\n", *pCur->item_);
+//		pCur = pCur->next_;
+//	}
+//}
+

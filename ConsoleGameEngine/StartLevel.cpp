@@ -17,7 +17,7 @@ void StartLevel::BeginPlay()
 {
 	Player* player = GetWorld()->SpawnActor<Player>({10,10});
 	Actor* actor1 = GetWorld()->SpawnActor<Actor>({0,1});
-	Actor* actor2 = GetWorld()->SpawnActor<Actor>({1,0});
+	Actor* actor2 = GetWorld()->SpawnActor<Actor>(1,0);
 
 	GetWorld()->DestroyActor(player);
 	GetWorld()->DestroyActor(actor1);
